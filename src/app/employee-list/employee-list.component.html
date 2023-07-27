@@ -1,0 +1,48 @@
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+<div class="container-fluid">
+  <h2>Employee List</h2>
+  <div class="upperDiv">
+    <div class="row">
+      <div class="form-row"><input type="button" class="btn btn-success addEmployee" value="Add Employee"
+          [routerLink]="['/add']"></div>
+    </div>
+  </div>
+  <div class="lowerDiv">
+    <div class="row">
+      <div class="form-row">
+        <table class="mt-3 table table-striped table-bordered">
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Contact Number</th>
+            <th>Email</th>
+            <th>Gender</th>
+            <th>Skills</th>
+            <th>Actions</th>
+          </tr>
+          <tr *ngFor="let employee of employees">
+            <td>{{ employee.id }}</td>
+            <td>{{ employee.name }}</td>
+            <td>{{ employee.contactNumber }}</td>
+            <td>{{ employee.email }}</td>
+            <td>{{ employee.gender }}</td>
+            <td>
+              <ul>
+                <li *ngFor="let skill of employee.skills">{{ skill.skillName }} ({{ skill.skillExperience }})</li>
+              </ul>
+            </td>
+            <td>
+              <a routerLink="/edit/{{ employee.id }}"><span class="material-symbols-outlined">
+                edit
+                </span></a>
+              <a (click)="onDeleteEmployee(employee.id)"><span class="material-symbols-outlined">
+                delete
+                </span></a>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
